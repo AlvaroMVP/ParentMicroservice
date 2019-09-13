@@ -1,9 +1,14 @@
 package com.project.controller;
 
 import com.project.model.Parent;
+import com.project.repository.ParentRepository;
 import com.project.service.ParentInterface;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +25,7 @@ public class ParentController {
 
   @Autowired
   private ParentInterface parentInterface;
+  private ParentRepository parentRepository;
 
   @GetMapping("/parent")
   public Flux<Parent> findAll() {
@@ -56,5 +62,11 @@ public class ParentController {
   public void delete(@PathVariable ("id") String idParent) {
     parentInterface.delete(idParent).subscribe();
   }
- 
+  
+  @GetMapping("parent/date/{birthdate}/{birthdate1}")
+  public Flux<Parent> findByBirthdateBetween(@PathVariable("birthdate")
+      @DateTimeFormat(iso = ISO.DATE) Date birthdate,@PathVariable("birthdate1")
+      @DateTimeFormat(iso = ISO.DATE) Date birthdate1) {
+    return parentRepository.findByBirthdateBetween(birthdate, birthdate1);
+  }
 }

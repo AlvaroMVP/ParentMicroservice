@@ -1,7 +1,7 @@
 package com.project.service;
 
 import com.project.model.Parent;
-
+import java.util.Date;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -13,10 +13,10 @@ public interface ParentInterface {
 
   Flux<Parent> findByFullName(String fullName);
 
-  Flux<Parent> findByDate(String birthdate);
+  Flux<Parent> findByBirthdateBetween(Date birthdate, Date birthdate1);
 
   Mono<Parent> findBynumberDocument(String numberDocument);
-
+  
   Mono<Parent> findById(String idParent);
 
   Mono<Parent> save(Parent parent);

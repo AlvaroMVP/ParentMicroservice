@@ -2,6 +2,9 @@ package com.project.service;
 
 import com.project.model.Parent;
 import com.project.repository.ParentRepository;
+
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -29,12 +32,6 @@ public class ParentServiceImpl implements ParentInterface {
   }
 
   @Override
-  public Flux<Parent> findByDate(String birthdate) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
   public Mono<Parent> findBynumberDocument(String numberDocument) {
     return parentRepository.findBynumberDocument(numberDocument);
   }
@@ -53,6 +50,11 @@ public class ParentServiceImpl implements ParentInterface {
   @Override
   public Mono<Void> delete(String idParent) {
     return parentRepository.deleteById(idParent);
+  }
+
+  @Override
+  public Flux<Parent> findByBirthdateBetween(Date birthdate, Date birthdate1) {
+    return parentRepository.findByBirthdateBetween(birthdate, birthdate1);
   }
 
 }

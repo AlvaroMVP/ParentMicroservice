@@ -1,13 +1,16 @@
 package com.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import java.io.Serializable;
+import java.util.Date;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 
 @Getter
 @Setter
@@ -18,10 +21,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Parent implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id
+  @NotNull
   private String idParent;
   private String fullName;
   private String gender;
-  private String birthdate;
+  @JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+  private Date birthdate;
   private String typeDocument;
   private String numberDocument;
   private String id;
