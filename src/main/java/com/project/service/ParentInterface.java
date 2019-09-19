@@ -7,20 +7,20 @@ import reactor.core.publisher.Mono;
 
 public interface ParentInterface {
 
-  void create(Parent p);
-
-  Flux<Parent> findAll();
-
-  Flux<Parent> findByFullName(String fullName);
-
-  Flux<Parent> findByBirthdateBetween(Date birthdate, Date birthdate1);
-
-  Mono<Parent> findBynumberDocument(String numberDocument);
+  public Flux<Parent> findAll();
   
-  Mono<Parent> findById(String idParent);
+  public Flux<Parent> findByDate(String birthdate);
 
-  Mono<Parent> save(Parent parent);
+  public Flux<Parent> findByBirthdateBetween(Date birthdate, Date birthdate1);
 
-  Mono<Void> delete(String idParent);
+  public Mono<Parent> findByFullName(String fullName);
+
+  public Mono<Parent> findBynumberDocument(String numberDocument);
+  
+  public Mono<Parent> findById(String idParent);
+
+  public Mono<Parent> save(Parent parent);
+
+  public Mono<Void> delete(String idParent);
 
 }
